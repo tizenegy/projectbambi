@@ -1,0 +1,5 @@
+https://westcentralus.api.cognitive.microsoft.com/vision/v1.0
+
+Key 1: 81fe31408397418bbeb94ddf992e9b81
+
+Key 2: 6d980068a64147e4bf70dfde51a5a787

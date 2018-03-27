@@ -1,0 +1,13 @@
+
+rectangle
+X: 131 Y: 265
+rectangle
+X: 172 Y: 197
+circle
+X: 67 Y: 201
+rectangle
+X: 117 Y: 149
+circle
+X: 130 Y: 114
+rectangle
+X: 24 Y: 116
