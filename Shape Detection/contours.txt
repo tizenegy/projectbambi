@@ -3,11 +3,27 @@ rectangle
 X: 131 Y: 265
 rectangle
 X: 172 Y: 197
-circle
-X: 67 Y: 201
 rectangle
+X: 67 Y: 198
+triangle
 X: 117 Y: 149
-circle
-X: 130 Y: 114
+triangle
+X: 47 Y: 96
 rectangle
-X: 24 Y: 116
+X: 73 Y: 88
+circle
+X: 58 Y: 92
+pentagon
+X: 38 Y: 90
+rectangle
+X: 114 Y: 95
+rectangle
+X: 32 Y: 86
+circle
+X: 87 Y: 84
+circle
+X: 98 Y: 54
+circle
+X: 39 Y: 48
+circle
+X: 128 Y: 76

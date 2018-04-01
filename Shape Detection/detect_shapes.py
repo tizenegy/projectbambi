@@ -1,12 +1,14 @@
 # USAGE
-# python detect_shapes.py --image shapes_and_colors.png
+# python detect_shapes.py -i alt1.png
 
 # import the necessary packages
 from pyimagesearch.shapedetector import ShapeDetector
-import argparse
-import imutils
-import cv2
-import numpy
+import argparse, imutils, cv2, numpy
+# import contrast enhancer module
+import image_contrast
+
+# open jpg, enhance brightness and contrast, save as alt1.png
+image_contrast
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -18,7 +20,7 @@ args = vars(ap.parse_args())
 # the shapes can be approximated better
 image = cv2.imread(args["image"])
 
-#invert (Elfert)
+# invert (Elfert)
 image = numpy.invert(image)
 
 resized = imutils.resize(image, width=300)
