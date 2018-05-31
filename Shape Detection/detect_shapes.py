@@ -7,7 +7,7 @@ import argparse, imutils, cv2, numpy
 # import contrast enhancer module
 import image_contrast
 
-# open jpg, enhance brightness and contrast, save as alt1.png
+# open jpg, enhance brightness and contrast, save as alt1.png (Elfert)
 image_contrast
 
 # construct the argument parse and parse the arguments
