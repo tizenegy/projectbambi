@@ -9,7 +9,7 @@ hold on
 color = ['r' 'g' 'y' 'b' 'c' 'k'];
 
 for i=1:6
-    [num, txt, raw]=xlsread('contours.xlsx',i);
+    [num, txt, raw]=xlsread('contours lisa.xlsx',i);
     
     % Init group value and sequence number
     group(i) = i;
