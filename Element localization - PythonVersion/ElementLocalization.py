@@ -83,15 +83,32 @@ for c in cnts:
     else:
         elementShape = 0
     
+
+    xArray = []
+    yArray = []
+    for point in c:
+        xArray.append(point[0][0])
+        yArray.append(point[0][1])
+    
+    maxX = sorted(xArray, reverse=True)[0]
+    minX = sorted(xArray, reverse=True)[len(xArray)-1]
+    length = maxX - minX
+
+    maxY = sorted(yArray, reverse=True)[0]
+    minY = sorted(yArray, reverse=True)[len(yArray)-1]
+    hight = maxY - minY
+
     #store the element data in an array of app element objects
     #(but only if the detected shape is valid)
     if shape != 0:
         newElement = AppElement(elementShape, cX, cY)
         appElementObjects.append(newElement)
         #print(newElement)
+    
+    #print(c)
 
 #Sort elements: which element is higher/lower on the screen?
-sorted(appElementObjects, key=lambda appElement: appElement.centerY)
+appElementObjects = sorted(appElementObjects, key=lambda appElement: appElement.centerY)
 index = 0
 for element in appElementObjects:
     element.verticalSequenceNumber = index
