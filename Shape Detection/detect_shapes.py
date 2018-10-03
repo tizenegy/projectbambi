@@ -45,6 +45,7 @@ sd = ShapeDetector()
 file = open("contours.txt", "a")
 file.truncate(0)
 
+elementArray = []
 # loop over the contours
 for c in cnts:
 	# compute the center of the contour, then detect the name of the
@@ -78,5 +79,20 @@ for c in cnts:
 	#file.write("\n")
 	#file.write(str(c))
 	#file.write("\n")
+
+	
+	if shape == "rectangle":
+		elementShape = 1
+	elif shape == "triangle":
+		elementShape = 2
+	elif shape == "circle":
+		elementShape = 3
+	else:
+		elementShape = 0
+	
+	#elementShape = shape
+	elementArray.append([elementShape, cX, cY])
+
+print(elementArray)
 
 file.close()
