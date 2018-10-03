@@ -4,6 +4,7 @@
 # import the necessary packages
 from pyimagesearch.shapedetector import ShapeDetector
 import argparse, imutils, cv2, numpy
+from PIL import Image, ImageEnhance
 # import contrast enhancer module
 import image_contrast
 
@@ -11,14 +12,15 @@ import image_contrast
 image_contrast
 
 # construct the argument parse and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True,
-	help="path to the input image")
-args = vars(ap.parse_args())
+#ap = argparse.ArgumentParser()
+#ap.add_argument("-i", "--image", required=True,
+#	help="path to the input image")
+#args = vars(ap.parse_args())
 
 # load the image and resize it to a smaller factor so that
 # the shapes can be approximated better
-image = cv2.imread(args["image"])
+#image = cv2.imread(args["image"])
+image = Image.open('alt1.png')
 
 # invert (Elfert)
 image = numpy.invert(image)
@@ -48,9 +50,12 @@ for c in cnts:
 	# compute the center of the contour, then detect the name of the
 	# shape using only the contour
 	M = cv2.moments(c)
-	cX = int((M["m10"] / M["m00"]) * ratio)
-	cY = int((M["m01"] / M["m00"]) * ratio)
-	shape = sd.detect(c)
+	try:
+		cX = int((M["m10"] / M["m00"]) * ratio)
+		cY = int((M["m01"] / M["m00"]) * ratio)
+		shape = sd.detect(c)
+	except ZeroDivisionError:
+		shape = "unknown"
 
 	# multiply the contour (x, y)-coordinates by the resize ratio,
 	# then draw the contours and the name of the shape on the image
