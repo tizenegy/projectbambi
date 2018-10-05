@@ -1,10 +1,11 @@
 # USAGE
-# python AppGeneratorMain.py
+# python __main_.py
+# package projectbambi
 
 # import the necessary packages
-from AppGenerator_Classes import AppElement
-from ShapeDetection.detect_shapes import #TODO
-from ElementLocalization.ElementLocalization import #TODO
+from classes.bambi_classes import AppElement
+from shapedetection.detect_shapes import #TODO
+from elementlocalization.element_localization import #TODO
 
 # Global variables and objects
 
