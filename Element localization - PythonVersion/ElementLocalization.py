@@ -10,10 +10,10 @@ import image_contrast
 
 
 class AppElement(object):
-    def __init__(self, shape, centerX, centerY):
+    def __init__(self, shape, hight, length, centerX, centerY):
         self.shape = shape
-        self.hight = 0
-        self.length = 0
+        self.hight = hight
+        self.length = length
         self.centerX = centerX
         self.centerY = centerY
         self.group = 0
@@ -21,9 +21,9 @@ class AppElement(object):
         self.horizontalSequenceNumber = 0
 
     def __str__(self):
-        return "This is a {0} element placed in {1}. place within group {2}.".format(
-            self.shape, self.horizontalSequenceNumber, self.group
-        )
+        #return "This is an element of type {0} with hight {1} and length {2} and center point ({3} I {4}) placed in {5}. place within group {6}.".format(self.shape, self.hight, self.length, self.centerX, self.centerY, self.horizontalSequenceNumber, self.group)
+        #return "App Element\r\n-----------\r\nShape type: {0}\r\nHight: {1}\r\nLength: {2}\r\nCenter point: ({3} | {4})\r\nVertical No.: {5}\r\nHorizontal No.: {6}\r\nGroup {7}\r\n".format(self.shape, self.hight, self.length, self.centerX, self.centerY, self.verticalSequenceNumber, self.horizontalSequenceNumber, self.group)
+        return "Shape = {0} H = {1} L = {2} Mc = ({3} | {4}) |# = {5} -# = {6} Group = {7}".format(self.shape, self.hight, self.length, self.centerX, self.centerY, self.verticalSequenceNumber, self.horizontalSequenceNumber, self.group)
 
 appElementObjects = []  #array to store all detected app elements in the for of objects
 
@@ -60,7 +60,6 @@ cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
 cnts = cnts[0] if imutils.is_cv2() else cnts[1]
 sd = ShapeDetector()
 
-elementArray = []
 # loop over the contours
 for c in cnts:
     # compute the center of the contour, then detect the name of the
@@ -76,7 +75,7 @@ for c in cnts:
     #map the shape to the shapes-code
     if shape == "rectangle":
         elementShape = 1
-    elif shape == "triangle":
+    elif ((shape == "triangle") | (shape == "square")):
         elementShape = 2
     elif shape == "circle":
         elementShape = 3
@@ -100,10 +99,10 @@ for c in cnts:
 
     #store the element data in an array of app element objects
     #(but only if the detected shape is valid)
-    if shape != 0:
-        newElement = AppElement(elementShape, cX, cY)
+    if elementShape != 0:
+        newElement = AppElement(elementShape, hight, length, cX, cY)
         appElementObjects.append(newElement)
-        #print(newElement)
+        print(newElement)
     
     #print(c)
 
@@ -114,9 +113,7 @@ for element in appElementObjects:
     element.verticalSequenceNumber = index
     index += 1
 
-print("Done! First element:")
-print(appElementObjects[0].centerY)
-print(appElementObjects[0].verticalSequenceNumber)
+print("First element:")
+print(appElementObjects[0])
 print("Last element:")
-print(appElementObjects[len(appElementObjects)-1].centerY)
-print(appElementObjects[len(appElementObjects)-1].verticalSequenceNumber)
+print(appElementObjects[len(appElementObjects)-1])
