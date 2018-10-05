@@ -8,6 +8,8 @@ from PIL import Image, ImageEnhance
 # import contrast enhancer module
 import image_contrast
 
+appElementObjects = []  #array to store all detected app elements in the for of objects
+numOfElementGroups = 1  #number of groups of app elements (elements that lie horizontally on the same line, shall be grouped together)
 
 class AppElement(object):
     def __init__(self, shape, hight, length, centerX, centerY):
@@ -16,16 +18,11 @@ class AppElement(object):
         self.length = length
         self.centerX = centerX
         self.centerY = centerY
-        self.group = 0
-        self.verticalSequenceNumber = 0
-        self.horizontalSequenceNumber = 0
+        self.group = numOfElementGroups
 
     def __str__(self):
-        #return "This is an element of type {0} with hight {1} and length {2} and center point ({3} I {4}) placed in {5}. place within group {6}.".format(self.shape, self.hight, self.length, self.centerX, self.centerY, self.horizontalSequenceNumber, self.group)
-        #return "App Element\r\n-----------\r\nShape type: {0}\r\nHight: {1}\r\nLength: {2}\r\nCenter point: ({3} | {4})\r\nVertical No.: {5}\r\nHorizontal No.: {6}\r\nGroup {7}\r\n".format(self.shape, self.hight, self.length, self.centerX, self.centerY, self.verticalSequenceNumber, self.horizontalSequenceNumber, self.group)
-        return "Shape = {0} H = {1} L = {2} Mc = ({3} | {4}) |# = {5} -# = {6} Group = {7}".format(self.shape, self.hight, self.length, self.centerX, self.centerY, self.verticalSequenceNumber, self.horizontalSequenceNumber, self.group)
+        return "Shape = {0} H = {1} L = {2} Mc = ({3} | {4}) Group = {5}".format(self.shape, self.hight, self.length, self.centerX, self.centerY, self.group)
 
-appElementObjects = []  #array to store all detected app elements in the for of objects
 
 # open jpg, enhance brightness and contrast, save as alt1.png (Elfert)
 image_contrast
@@ -106,14 +103,29 @@ for c in cnts:
     
     #print(c)
 
-#Sort elements: which element is higher/lower on the screen?
+#Sort elements vertically: (which element is higher/lower on the screen?)
 appElementObjects = sorted(appElementObjects, key=lambda appElement: appElement.centerY)
-index = 0
-for element in appElementObjects:
-    element.verticalSequenceNumber = index
-    index += 1
 
-print("First element:")
-print(appElementObjects[0])
-print("Last element:")
-print(appElementObjects[len(appElementObjects)-1])
+#print("First element:")
+#print(appElementObjects[0])
+#print("Last element:")
+#print(appElementObjects[len(appElementObjects)-1])
+
+#Group the elements that lie on the same horizontal line:
+#Note about the algorithm:
+#If y-value of center point of the (i+1)-th element lies within the range (hight) of the i-th element, the i-th element and the (i+1)-th element should be grouped together
+index = 0
+while index < (len(appElementObjects)-1):
+    if (appElementObjects[index+1].centerY <= (appElementObjects[index].centerY + appElementObjects[index].hight)) & (appElementObjects[index+1].centerY >= (appElementObjects[index].centerY - appElementObjects[index].hight)):
+        appElementObjects[index+1].group = appElementObjects[index].group
+    else:
+        numOfElementGroups += 1
+        appElementObjects[index+1].group = numOfElementGroups
+    index += 1
+            
+#Sort the elements within one group horizontally: (which element is more on the left/right on the screen?)
+appElementObjects = sorted(sorted(appElementObjects, key = lambda appElement: appElement.centerX), key = lambda appElement: appElement.group)
+
+print("\r\n\r\n")
+for element in appElementObjects:
+    print(element)
