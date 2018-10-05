@@ -1,0 +1,26 @@
+- identify cells as input ONLY if
+	- building a form/survey
+	- formulas are using the cell
+	- dropdown etc
+- otherwise output
+- cluster cells:
+	- empty cells in range
+	- filled cells (no formulas)
+	- filled cells (formulas)
+- find all cell references in formulas
+- assign values to cells:
+	- number of unique refs FROM this cell
+	- number of unique refs TO this cell
+- rank cells:
+	- longest chain?
+	- build up tree/graph?
+		-> determine longest path?
+		- is the longest the most important?
+	- (refs FROM)-(refs TO)=rank?
+		- maybe weight those refs?
+
+
+
+fr. nölscher lufthansa
+- highlight important cells in the browser
+	-> even users unfamiliar with sheet will be 		able to build app
