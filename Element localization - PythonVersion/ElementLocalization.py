@@ -11,6 +11,8 @@ import image_contrast
 appElementObjects = []  #array to store all detected app elements in the for of objects
 numOfElementGroups = 1  #number of groups of app elements (elements that lie horizontally on the same line, shall be grouped together)
 
+outputArray = []        #array to store the module output data (= list of grouped and sorted app elements for XML generation)
+
 class AppElement(object):
     def __init__(self, shape, hight, length, centerX, centerY):
         self.shape = shape
@@ -129,3 +131,22 @@ appElementObjects = sorted(sorted(appElementObjects, key = lambda appElement: ap
 print("\r\n\r\n")
 for element in appElementObjects:
     print(element)
+
+#Generate output array
+#Note: outputArray = [(elementType, group)]
+#      with:
+#      elementType =    0   for   new group
+#                       1   for   rectangle
+#                       2   for   triangle
+#                       3   for   circle
+outputArray.append([0, 1])
+index = 0
+while index <= (len(appElementObjects)-1):
+    outputArray.append([appElementObjects[index].shape, appElementObjects[index].group])
+    if index == (len(appElementObjects)-1):
+        break
+    if appElementObjects[index].group != appElementObjects[index+1].group:
+        outputArray.append([0, appElementObjects[index+1].group])
+    index += 1
+
+print(outputArray)
