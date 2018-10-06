@@ -3,6 +3,7 @@
 # package projectbambi
 
 from imageanalysis import analyze_image
+from xmlgenerator import generate_xml_code
 
-testElements = analyze_image('ipad3.jpg')
-print(testElements)
+xmlElements = analyze_image('ipad3.jpg')
+generate_xml_code(xmlElements)
