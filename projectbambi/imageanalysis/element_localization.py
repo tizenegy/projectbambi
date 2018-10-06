@@ -2,8 +2,8 @@
 # python detect_shapes.py -i alt1.png
 
 # import the necessary packages
-from bambiclasses import AppElement
-from shapedetection.detect_shapes import appElementObjects
+from .bambiclasses import AppElement
+from .detect_shapes import appElementObjects
 
 xmlElements = []        #array to store the module output data (= list of grouped and sorted app elements for XML generation)
 numOfElementGroups = 1  #number of groups of app elements (elements that lie horizontally on the same line, shall be grouped together)
