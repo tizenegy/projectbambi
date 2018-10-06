@@ -1,6 +1,6 @@
 from PIL import Image, ImageEnhance
 
-#from __init__ import image
+from . import image
 
 img2 = Image.open(str(image))
 enhancer = ImageEnhance.Contrast(img2)

@@ -4,6 +4,5 @@
 
 from imageanalysis import analyze_image
 
-image = 'ipad3.jpg'
-testElements = analyze_image(image)
+testElements = analyze_image('ipad3.jpg')
 print(testElements)
