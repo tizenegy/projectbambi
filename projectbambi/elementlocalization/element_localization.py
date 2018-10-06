@@ -2,9 +2,11 @@
 # python detect_shapes.py -i alt1.png
 
 # import the necessary packages
-import AppGenerator_Classes
+from bambiclasses import AppElement
+from shapedetection.detect_shapes import appElementObjects
 
-outputArray = []        #array to store the module output data (= list of grouped and sorted app elements for XML generation)
+xmlElements = []        #array to store the module output data (= list of grouped and sorted app elements for XML generation)
+numOfElementGroups = 1  #number of groups of app elements (elements that lie horizontally on the same line, shall be grouped together)
 
 #Sort elements vertically: (which element is higher/lower on the screen?)
 appElementObjects = sorted(appElementObjects, key=lambda appElement: appElement.centerY)
@@ -25,20 +27,20 @@ while index < (len(appElementObjects)-1):
 appElementObjects = sorted(sorted(appElementObjects, key = lambda appElement: appElement.centerX), key = lambda appElement: appElement.group)
 
 #Generate output array
-#Note: outputArray = [(elementType, group)]
+#Note: xmlElements = [(elementType, group)]
 #      with:
 #      elementType =    0   for   new group
 #                       1   for   rectangle
 #                       2   for   triangle
 #                       3   for   circle
-outputArray.append([0, 1])
+xmlElements.append([0, 1])
 index = 0
 while index <= (len(appElementObjects)-1):
-    outputArray.append([appElementObjects[index].shape, appElementObjects[index].group])
+    xmlElements.append([appElementObjects[index].shape, appElementObjects[index].group])
     if index == (len(appElementObjects)-1):
         break
     if appElementObjects[index].group != appElementObjects[index+1].group:
-        outputArray.append([0, appElementObjects[index+1].group])
+        xmlElements.append([0, appElementObjects[index+1].group])
     index += 1
 
-print(outputArray)
+print(xmlElements)

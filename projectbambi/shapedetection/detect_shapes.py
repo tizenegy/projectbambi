@@ -5,10 +5,10 @@
 import argparse, imutils, cv2, numpy
 
 from PIL import Image, ImageEnhance
-from pyimagesearch.shapedetector import ShapeDetector
-import image_contrast # contrast enhancer module
+from shapedetection.pyimagesearch.shapedetector import ShapeDetector
+from shapedetection import image_contrast # contrast enhancer module
 
-from ..classes.bambi_classes import AppElement
+from bambiclasses import AppElement
 
 # local variables
 appElementObjects = []  #array to store all detected app elements in the form of objects

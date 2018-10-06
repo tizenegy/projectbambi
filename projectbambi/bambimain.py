@@ -1,4 +1,6 @@
-
+# USAGE
+# python bambimain.py
+# package projectbambi
 
 from bambiclasses import AppElement
 from shapedetection import detect_shapes
