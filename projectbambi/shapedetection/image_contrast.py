@@ -1,6 +1,6 @@
 from PIL import Image, ImageEnhance
 
-img2 = Image.open('2.jpg')
+img2 = Image.open('ipad3.jpg')
 enhancer = ImageEnhance.Contrast(img2)
 img2 = enhancer.enhance(4)
 enhancer = ImageEnhance.Brightness(img2)

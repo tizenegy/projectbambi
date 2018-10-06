@@ -1,3 +1,7 @@
+
+
+from elementlocalization.element_localization import xmlElements
+
 # variables inside the xml elements
 eID = "lBaa1Vh7"
 groupID = "SMUTib8O"
@@ -41,7 +45,7 @@ def switch(xmlElement):
 # expected data from shape recognition:
 # index 0: type of shape
 # index 1: group number
-incomingArray = [[1, 1], [0, 2], [4, 2], [4, 2], [0, 3], [4, 3],[2, 3], [3, 4]]    # dummy data
+incomingArray = xmlElements
 
 # output file --> data to be sent to OaA API later on
 file = open("XML_result.txt", "a")
