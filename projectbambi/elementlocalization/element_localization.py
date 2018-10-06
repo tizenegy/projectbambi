@@ -16,7 +16,7 @@ appElementObjects = sorted(appElementObjects, key=lambda appElement: appElement.
 #If y-value of center point of the (i+1)-th element lies within the range (hight) of the i-th element, the i-th element and the (i+1)-th element should be grouped together
 index = 0
 while index < (len(appElementObjects)-1):
-    if (appElementObjects[index+1].centerY <= (appElementObjects[index].centerY + appElementObjects[index].hight)) & (appElementObjects[index+1].centerY >= (appElementObjects[index].centerY - appElementObjects[index].hight)):
+    if (appElementObjects[index+1].centerY <= (appElementObjects[index].centerY + 0.5*appElementObjects[index].hight)) & (appElementObjects[index+1].centerY >= (appElementObjects[index].centerY - 0.5*appElementObjects[index].hight)):
         appElementObjects[index+1].group = appElementObjects[index].group
     else:
         numOfElementGroups += 1
@@ -43,4 +43,4 @@ while index <= (len(appElementObjects)-1):
         xmlElements.append([0, appElementObjects[index+1].group])
     index += 1
 
-print(xmlElements)
+#print(xmlElements)

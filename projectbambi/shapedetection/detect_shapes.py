@@ -2,6 +2,7 @@
 # python detect_shapes.py -i alt1.png
 
 # import the necessary packages
+import os
 import argparse, imutils, cv2, numpy
 
 from PIL import Image, ImageEnhance
@@ -15,7 +16,7 @@ appElementObjects = []  #array to store all detected app elements in the form of
 outputArray = []        #array to store the module output data (= list of grouped and sorted app elements for XML generation)
 
 # open jpg, enhance brightness and contrast, save as alt1.png (Elfert)
-image_contrast
+#image_contrast
 
 # construct the argument parse and parse the arguments
 #ap = argparse.ArgumentParser()
@@ -114,7 +115,9 @@ for c in cnts:
     if elementShape != 0:
         newElement = AppElement(elementShape, hight, length, cX, cY)
         appElementObjects.append(newElement)
-        print(newElement)
+        #print(newElement)
     
 
 #file.close()
+
+os.remove('alt1.png')   #clean up
