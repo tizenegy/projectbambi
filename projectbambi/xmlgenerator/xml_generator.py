@@ -57,9 +57,9 @@ file.write(switch(52))
 
 # writing the actual xml
 for x in incomingArray:
-    print(switch(x[0])+"\n")
+    #print(switch(x[0])+"\n")
     file.write(switch(x[0]))
-    print(str(x[1])+"\n")
+    #print(str(x[1])+"\n")
 
 # End of xml is always the same
 file.write(switch(53))
