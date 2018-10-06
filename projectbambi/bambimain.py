@@ -2,7 +2,8 @@
 # python bambimain.py
 # package projectbambi
 
-#from bambiclasses import AppElement
-#from shapedetection import detect_shapes
-#from elementlocalization import element_localization
-from xmlgenerator import xml_generator
+from imageanalysis import analyze_image
+from xmlgenerator import generate_xml_code
+
+xmlElements = analyze_image('ipad3.jpg')
+generate_xml_code(xmlElements)

@@ -1,6 +1,6 @@
 
 
-from elementlocalization.element_localization import xmlElements
+from . import xmlElements
 
 # variables inside the xml elements
 eID = "lBaa1Vh7"
