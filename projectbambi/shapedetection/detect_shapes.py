@@ -8,7 +8,7 @@ from PIL import Image, ImageEnhance
 from pyimagesearch.shapedetector import ShapeDetector
 import image_contrast # contrast enhancer module
 
-from projectbambi.classes.bambi_classes import AppElement
+from ..classes.bambi_classes import AppElement
 
 # local variables
 appElementObjects = []  #array to store all detected app elements in the form of objects
